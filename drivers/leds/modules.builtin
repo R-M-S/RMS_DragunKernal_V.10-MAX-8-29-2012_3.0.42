@@ -1,0 +1,3 @@
+kernel/drivers/leds/leds-gpio.ko
+kernel/drivers/leds/leds-pm8058.ko
+kernel/drivers/leds/flashlight_aat1271.ko

@@ -1,0 +1,8 @@
+kernel/arch/arm/mach-msm/htc_acoustic_8x60.ko
+kernel/arch/arm/mach-msm/htc_headset_mgr.ko
+kernel/arch/arm/mach-msm/htc_headset_gpio.ko
+kernel/arch/arm/mach-msm/htc_headset_pmic.ko
+kernel/arch/arm/mach-msm/htc_headset_8x60.ko
+kernel/arch/arm/mach-msm/rpm_log.ko
+kernel/arch/arm/mach-msm/msm-buspm-dev.ko
+kernel/arch/arm/mach-msm/qdsp6v2_1x/snddev_icodec.ko

@@ -1,0 +1,3 @@
+kernel/drivers/gpio/pmic8901-mpp.ko
+kernel/drivers/gpio/pm8xxx-gpio.ko
+kernel/drivers/gpio/pm8xxx-mpp.ko

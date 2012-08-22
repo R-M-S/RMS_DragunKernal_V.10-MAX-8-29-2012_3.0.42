@@ -1,0 +1,1 @@
+cmd_drivers/mfd/built-in.o :=  arm-eabi-ld -EL    -r -o drivers/mfd/built-in.o drivers/mfd/marimba-core.o drivers/mfd/timpani-codec.o drivers/mfd/msm-adie-codec.o drivers/mfd/mfd-core.o drivers/mfd/pm8xxx-irq.o drivers/mfd/pmic8058.o drivers/mfd/pmic8901.o drivers/mfd/pm8xxx-debug.o drivers/mfd/pm8xxx-misc.o drivers/mfd/pm8xxx-batt-alarm.o 
