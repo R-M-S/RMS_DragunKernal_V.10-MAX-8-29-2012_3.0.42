@@ -912,14 +912,6 @@ __setup_irq(unsigned int irq, struct irq_desc *desc, struct irqaction *new)
 
 	if (desc->irq_data.chip == &no_irq_chip)
 		return -ENOSYS;
-	if (!try_module_get(desc->owner))
-		return -ENODEV;
-	/*
-	 * Some drivers like serial.c use request_irq() heavily,
-	 * so we have to be careful not to interfere with a
-	 * running system.
-	 */
-
 
 	/*
 	 * Check whether the interrupt nests into another interrupt

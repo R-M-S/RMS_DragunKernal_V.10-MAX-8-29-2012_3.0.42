@@ -1,4 +1,5 @@
 kernel/drivers/input/input-core.ko
+kernel/drivers/input/ff-memless.ko
 kernel/drivers/input/evdev.ko
 kernel/drivers/input/keyreset.ko
 kernel/drivers/input/misc/gpio_event.ko

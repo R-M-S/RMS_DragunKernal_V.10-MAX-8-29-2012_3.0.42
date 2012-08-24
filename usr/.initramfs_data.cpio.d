@@ -1,1 +1,1 @@
-deps_initramfs := /home/rms/android/kernel/cm/scripts/gen_initramfs_list.sh \
+deps_initramfs := /home/rms/android/kernel/tam/scripts/gen_initramfs_list.sh \

@@ -495,18 +495,6 @@ static void option_instat_callback(struct urb *urb);
 #define LG_VENDOR_ID				0x1004
 #define LG_PRODUCT_L02C				0x618f
 
-/* Viettel products */
-#define VIETTEL_VENDOR_ID			0x2262
-#define VIETTEL_PRODUCT_VT1000			0x0002
-
-/* ZD Incorporated */
-#define ZD_VENDOR_ID				0x0685
-#define ZD_PRODUCT_7000				0x7000
-
-/* LG products */
-#define LG_VENDOR_ID				0x1004
-#define LG_PRODUCT_L02C				0x618f
-
 /* MediaTek products */
 #define MEDIATEK_VENDOR_ID			0x0e8d
 #define MEDIATEK_PRODUCT_DC_1COM		0x00a0

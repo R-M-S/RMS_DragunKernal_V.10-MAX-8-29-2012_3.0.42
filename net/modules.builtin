@@ -2,6 +2,7 @@ kernel/net/bluetooth/bluetooth.ko
 kernel/net/bluetooth/bnep/bnep.ko
 kernel/net/bluetooth/hidp/hidp.ko
 kernel/net/bluetooth/rfcomm/rfcomm.ko
+kernel/net/dns_resolver/dns_resolver.ko
 kernel/net/ipv4/ah4.ko
 kernel/net/ipv4/esp4.ko
 kernel/net/ipv4/tunnel4.ko
@@ -123,6 +124,8 @@ kernel/net/sched/sch_htb.ko
 kernel/net/sched/sch_ingress.ko
 kernel/net/sched/cls_u32.ko
 kernel/net/sched/em_u32.ko
+kernel/net/sunrpc/sunrpc.ko
+kernel/net/sunrpc/auth_gss/auth_rpcgss.ko
 kernel/net/unix/unix.ko
 kernel/net/wireless/cfg80211.ko
 kernel/net/wireless/lib80211.ko

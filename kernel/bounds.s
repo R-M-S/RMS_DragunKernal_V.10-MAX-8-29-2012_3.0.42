@@ -10,7 +10,8 @@
 @ GNU C (GCC) version 4.4.3 (arm-eabi)
 @	compiled by GNU C version 4.2.4 (Ubuntu 4.2.4-1ubuntu4), GMP version 4.2.4, MPFR version 2.4.1.
 @ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-@ options passed:  -nostdinc -I/home/rms/android/kernel/cm/arch/arm/include
+@ options passed:  -nostdinc
+@ -I/home/rms/android/kernel/tam/arch/arm/include
 @ -Iarch/arm/include/generated -Iinclude -Iarch/arm/mach-msm/include
 @ -iprefix
 @ /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/
@@ -490,6 +491,8 @@ foo:
 	.ascii	"ZONE_NORMAL\000"
 .LASF28:
 	.ascii	"PG_mappedtodisk\000"
+.LASF56:
+	.ascii	"/home/rms/android/kernel/tam\000"
 .LASF11:
 	.ascii	"PG_locked\000"
 .LASF24:
@@ -578,8 +581,6 @@ foo:
 	.ascii	"long int\000"
 .LASF44:
 	.ascii	"ZONE_MOVABLE\000"
-.LASF56:
-	.ascii	"/home/rms/android/kernel/cm\000"
 .LASF51:
 	.ascii	"PCG_FILE_MAPPED\000"
 .LASF53:

@@ -1,4 +1,4 @@
-/* Copyright (c) 2008-2011, Code Aurora Forum. All rights reserved.
+/* Copyright (c) 2008-2012, Code Aurora Forum. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -315,7 +315,7 @@ static void kgsl_check_idle_locked(struct kgsl_device *device)
 	if (device->pwrctrl.nap_allowed == true &&
 	    device->state == KGSL_STATE_ACTIVE &&
 		device->requested_state == KGSL_STATE_NONE) {
-		device->requested_state = KGSL_STATE_NAP;
+		kgsl_pwrctrl_request_state(device, KGSL_STATE_NAP);
 		if (kgsl_pwrctrl_sleep(device) != 0)
 			mod_timer(&device->idle_timer,
 				  jiffies +
@@ -408,7 +408,7 @@ static int kgsl_suspend_device(struct kgsl_device *device, pm_message_t state)
 	device->pwrctrl.nap_allowed = false;
 	policy_saved = device->pwrscale.policy;
 	device->pwrscale.policy = NULL;
-	device->requested_state = KGSL_STATE_SUSPEND;
+	kgsl_pwrctrl_request_state(device, KGSL_STATE_SUSPEND);
 	/* Make sure no user process is waiting for a timestamp *
 	 * before supending */
 	if (device->active_cnt != 0) {
@@ -416,8 +416,6 @@ static int kgsl_suspend_device(struct kgsl_device *device, pm_message_t state)
 		wait_for_completion(&device->suspend_gate);
 		mutex_lock(&device->mutex);
 	}
-	/* Don't let the timer wake us during suspended sleep. */
-	del_timer_sync(&device->idle_timer);
 	switch (device->state) {
 	case KGSL_STATE_INIT:
 		break;
@@ -429,23 +427,20 @@ static int kgsl_suspend_device(struct kgsl_device *device, pm_message_t state)
 		/* Get the completion ready to be waited upon. */
 		INIT_COMPLETION(device->hwaccess_gate);
 		device->ftbl->suspend_context(device);
+		kgsl_pwrctrl_stop_work(device);
 		device->ftbl->stop(device);
-		device->state = KGSL_STATE_SUSPEND;
-		KGSL_PWR_WARN(device, "state -> SUSPEND, device %d\n",
-			device->id);
+		kgsl_pwrctrl_set_state(device, KGSL_STATE_SUSPEND);
 		break;
 	case KGSL_STATE_SLUMBER:
 		INIT_COMPLETION(device->hwaccess_gate);
-		device->state = KGSL_STATE_SUSPEND;
-		KGSL_PWR_WARN(device, "state -> SUSPEND, device %d\n",
-			device->id);
+		kgsl_pwrctrl_set_state(device, KGSL_STATE_SUSPEND);
 		break;
 	default:
 		KGSL_PWR_ERR(device, "suspend fail, device %d\n",
 				device->id);
 		goto end;
 	}
-	device->requested_state = KGSL_STATE_NONE;
+	kgsl_pwrctrl_request_state(device, KGSL_STATE_NONE);
 	device->pwrctrl.nap_allowed = nap_allowed_saved;
 	device->pwrscale.policy = policy_saved;
 	status = 0;
@@ -466,14 +461,11 @@ static int kgsl_resume_device(struct kgsl_device *device)
 	KGSL_PWR_WARN(device, "resume start\n");
 	mutex_lock(&device->mutex);
 	if (device->state == KGSL_STATE_SUSPEND) {
-		device->state = KGSL_STATE_SLUMBER;
+		kgsl_pwrctrl_set_state(device, KGSL_STATE_SLUMBER);
 		status = 0;
-		KGSL_PWR_WARN(device,
-				"state -> SLUMBER, device %d\n",
-				device->id);
 		complete_all(&device->hwaccess_gate);
 	}
-	device->requested_state = KGSL_STATE_NONE;
+	kgsl_pwrctrl_request_state(device, KGSL_STATE_NONE);
 
 	mutex_unlock(&device->mutex);
 	KGSL_PWR_WARN(device, "resume end\n");
@@ -518,7 +510,8 @@ void kgsl_early_suspend_driver(struct early_suspend *h)
 					struct kgsl_device, display_off);
 	KGSL_PWR_WARN(device, "early suspend start\n");
 	mutex_lock(&device->mutex);
-	device->requested_state = KGSL_STATE_SLUMBER;
+	kgsl_pwrctrl_stop_work(device);
+	kgsl_pwrctrl_request_state(device, KGSL_STATE_SLUMBER);
 	kgsl_pwrctrl_sleep(device);
 	mutex_unlock(&device->mutex);
 	KGSL_PWR_WARN(device, "early suspend end\n");
@@ -548,6 +541,7 @@ void kgsl_late_resume_driver(struct early_suspend *h)
 	mutex_lock(&device->mutex);
 	kgsl_pwrctrl_wake(device);
 	device->pwrctrl.restore_slumber = 0;
+	kgsl_pwrctrl_pwrlevel_change(device, KGSL_PWRLEVEL_TURBO);
 	mutex_unlock(&device->mutex);
 	kgsl_check_idle(device);
 	KGSL_PWR_WARN(device, "late resume end\n");
@@ -663,9 +657,9 @@ static int kgsl_release(struct inode *inodep, struct file *filep)
 
 	device->open_count--;
 	if (device->open_count == 0) {
+		kgsl_pwrctrl_stop_work(device);
 		result = device->ftbl->stop(device);
-		device->state = KGSL_STATE_INIT;
-		KGSL_PWR_WARN(device, "state -> INIT, device %d\n", device->id);
+		kgsl_pwrctrl_set_state(device, KGSL_STATE_INIT);
 	}
 	/* clean up any to-be-freed entries that belong to this
 	 * process and this device
@@ -733,9 +727,7 @@ static int kgsl_open(struct inode *inodep, struct file *filep)
 			mutex_unlock(&device->mutex);
 			goto err_putprocess;
 		}
-		device->state = KGSL_STATE_ACTIVE;
-		KGSL_PWR_WARN(device,
-				"state -> ACTIVE, device %d\n", minor);
+		kgsl_pwrctrl_set_state(device, KGSL_STATE_ACTIVE);
 	}
 	device->open_count++;
 	mutex_unlock(&device->mutex);
@@ -1339,8 +1331,7 @@ static int memdesc_sg_virt(struct kgsl_memdesc *memdesc,
 	int sglen = PAGE_ALIGN(size) / PAGE_SIZE;
 	unsigned long paddr = (unsigned long) addr;
 
-	memdesc->sg = kmalloc(sglen * sizeof(struct scatterlist),
-		GFP_KERNEL);
+	memdesc->sg = vmalloc(sglen * sizeof(struct scatterlist));
 	if (memdesc->sg == NULL)
 		return -ENOMEM;
 
@@ -1380,7 +1371,7 @@ static int memdesc_sg_virt(struct kgsl_memdesc *memdesc,
 
 err:
 	spin_unlock(&current->mm->page_table_lock);
-	kfree(memdesc->sg);
+	vfree(memdesc->sg);
 	memdesc->sg = NULL;
 
 	return -EINVAL;

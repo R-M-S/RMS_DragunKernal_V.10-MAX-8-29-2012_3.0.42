@@ -37,6 +37,7 @@
 #include <linux/rtnetlink.h>
 #include <net/rtnetlink.h>
 #include <linux/u64_stats_sync.h>
+#include <linux/sched.h>
 
 static int numdummies = 1;
 

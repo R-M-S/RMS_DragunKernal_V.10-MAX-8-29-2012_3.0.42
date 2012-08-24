@@ -1,10 +1,10 @@
-cmd_init/do_mounts_initrd.o := /home/rms/android/kernel/cm/scripts/gcc-wrapper.py arm-eabi-gcc -Wp,-MD,init/.do_mounts_initrd.o.d  -nostdinc -isystem /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/home/rms/android/kernel/cm/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Os -marm -fno-dwarf2-cfi-asm -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack   -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(do_mounts_initrd)"  -D"KBUILD_MODNAME=KBUILD_STR(mounts)" -c -o init/do_mounts_initrd.o init/do_mounts_initrd.c
+cmd_init/do_mounts_initrd.o := /home/rms/android/kernel/tam/scripts/gcc-wrapper.py arm-eabi-gcc -Wp,-MD,init/.do_mounts_initrd.o.d  -nostdinc -isystem /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/home/rms/android/kernel/tam/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Os -marm -fno-dwarf2-cfi-asm -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack  -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(do_mounts_initrd)"  -D"KBUILD_MODNAME=KBUILD_STR(mounts)" -c -o init/do_mounts_initrd.o init/do_mounts_initrd.c
 
 source_init/do_mounts_initrd.o := init/do_mounts_initrd.c
 
 deps_init/do_mounts_initrd.o := \
   include/linux/unistd.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/unistd.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/unistd.h \
     $(wildcard include/config/aeabi.h) \
     $(wildcard include/config/oabi/compat.h) \
   include/linux/kernel.h \
@@ -29,23 +29,23 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/arch/supports/optimized/inlining.h) \
     $(wildcard include/config/optimize/inlining.h) \
   include/linux/compiler-gcc4.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/linkage.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/linkage.h \
   include/linux/stddef.h \
   include/linux/types.h \
     $(wildcard include/config/uid16.h) \
     $(wildcard include/config/arch/dma/addr/t/64bit.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
     $(wildcard include/config/64bit.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/types.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/types.h \
   include/asm-generic/int-ll64.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/bitsperlong.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/bitsperlong.h \
   include/asm-generic/bitsperlong.h \
   include/linux/posix_types.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/posix_types.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/posix_types.h \
   include/linux/bitops.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/bitops.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/bitops.h \
     $(wildcard include/config/smp.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/system.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/system.h \
     $(wildcard include/config/function/graph/tracer.h) \
     $(wildcard include/config/cpu/32v6k.h) \
     $(wildcard include/config/cpu/xsc3.h) \
@@ -61,12 +61,12 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/preempt/tracer.h) \
     $(wildcard include/config/trace/irqflags/support.h) \
   include/linux/typecheck.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/irqflags.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/ptrace.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/irqflags.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/ptrace.h \
     $(wildcard include/config/cpu/endian/be8.h) \
     $(wildcard include/config/arm/thumb.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/hwcap.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/outercache.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/hwcap.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/outercache.h \
     $(wildcard include/config/outer/cache/sync.h) \
     $(wildcard include/config/outer/cache.h) \
   include/asm-generic/cmpxchg-local.h \
@@ -78,10 +78,10 @@ deps_init/do_mounts_initrd.o := \
   include/asm-generic/bitops/const_hweight.h \
   include/asm-generic/bitops/lock.h \
   include/asm-generic/bitops/le.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/byteorder.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/byteorder.h \
   include/linux/byteorder/little_endian.h \
   include/linux/swab.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/swab.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/swab.h \
   include/linux/byteorder/generic.h \
   include/linux/log2.h \
     $(wildcard include/config/arch/has/ilog2/u32.h) \
@@ -93,14 +93,14 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/modules.h) \
     $(wildcard include/config/hotplug.h) \
   include/linux/dynamic_debug.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/bug.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/thumb2/kernel.h) \
     $(wildcard include/config/debug/bugverbose.h) \
   include/asm-generic/bug.h \
     $(wildcard include/config/generic/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/div64.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/div64.h \
   include/linux/fs.h \
     $(wildcard include/config/sysfs.h) \
     $(wildcard include/config/security.h) \
@@ -118,7 +118,7 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/migration.h) \
   include/linux/limits.h \
   include/linux/ioctl.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/ioctl.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/ioctl.h \
   include/asm-generic/ioctl.h \
   include/linux/blk_types.h \
     $(wildcard include/config/blk/dev/integrity.h) \
@@ -138,12 +138,12 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/preempt/notifiers.h) \
   include/linux/thread_info.h \
     $(wildcard include/config/compat.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/thread_info.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/fpstate.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/iwmmxt.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/domain.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/domain.h \
     $(wildcard include/config/verify/permission/fault.h) \
     $(wildcard include/config/io/36.h) \
     $(wildcard include/config/cpu/use/domains.h) \
@@ -151,18 +151,18 @@ deps_init/do_mounts_initrd.o := \
   include/linux/stringify.h \
   include/linux/bottom_half.h \
   include/linux/spinlock_types.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/spinlock_types.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/spinlock_types.h \
   include/linux/lockdep.h \
     $(wildcard include/config/lock/stat.h) \
     $(wildcard include/config/prove/rcu.h) \
   include/linux/rwlock_types.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/spinlock.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/spinlock.h \
     $(wildcard include/config/arm/ticket/locks.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/processor.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/processor.h \
     $(wildcard include/config/have/hw/breakpoint.h) \
     $(wildcard include/config/mmu.h) \
     $(wildcard include/config/arm/errata/754327.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/hw_breakpoint.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/hw_breakpoint.h \
   include/linux/rwlock.h \
   include/linux/spinlock_api_smp.h \
     $(wildcard include/config/inline/spin/lock.h) \
@@ -194,10 +194,10 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/inline/write/unlock/irq.h) \
     $(wildcard include/config/inline/read/unlock/irqrestore.h) \
     $(wildcard include/config/inline/write/unlock/irqrestore.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/atomic.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/atomic.h \
     $(wildcard include/config/generic/atomic64.h) \
   include/asm-generic/atomic-long.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/current.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/current.h \
   include/linux/kdev_t.h \
   include/linux/dcache.h \
   include/linux/rculist.h \
@@ -211,9 +211,10 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/tiny/preempt/rcu.h) \
     $(wildcard include/config/debug/objects/rcu/head.h) \
     $(wildcard include/config/preempt/rt.h) \
+  include/linux/rcu_types.h \
   include/linux/cache.h \
     $(wildcard include/config/arch/has/cache/line/size.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/cache.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/cache.h \
     $(wildcard include/config/arm/l1/cache/shift.h) \
   include/linux/threads.h \
     $(wildcard include/config/nr/cpus.h) \
@@ -226,7 +227,7 @@ deps_init/do_mounts_initrd.o := \
   include/linux/bitmap.h \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/string.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/string.h \
   include/linux/seqlock.h \
   include/linux/completion.h \
   include/linux/debugobjects.h \
@@ -238,7 +239,7 @@ deps_init/do_mounts_initrd.o := \
   include/linux/bit_spinlock.h \
   include/linux/path.h \
   include/linux/stat.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/stat.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/stat.h \
   include/linux/time.h \
     $(wildcard include/config/arch/uses/gettimeoffset.h) \
     $(wildcard include/config/arch/msm8x60/lte.h) \
@@ -255,22 +256,22 @@ deps_init/do_mounts_initrd.o := \
   include/linux/quota.h \
     $(wildcard include/config/quota/netlink/interface.h) \
   include/linux/errno.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/errno.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/errno.h \
   include/asm-generic/errno.h \
   include/asm-generic/errno-base.h \
   include/linux/rwsem.h \
     $(wildcard include/config/rwsem/generic/spinlock.h) \
-  include/linux/rwsem-spinlock.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/rwsem.h \
   include/linux/percpu_counter.h \
   include/linux/smp.h \
     $(wildcard include/config/use/generic/smp/helpers.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/smp.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/smp.h \
   include/linux/percpu.h \
     $(wildcard include/config/need/per/cpu/embed/first/chunk.h) \
     $(wildcard include/config/need/per/cpu/page/first/chunk.h) \
     $(wildcard include/config/have/setup/per/cpu/area.h) \
   include/linux/pfn.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/percpu.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/percpu.h \
   include/asm-generic/percpu.h \
   include/linux/percpu-defs.h \
     $(wildcard include/config/debug/force/weak/per/cpu.h) \
@@ -283,7 +284,7 @@ deps_init/do_mounts_initrd.o := \
   include/linux/sunrpc/msg_prot.h \
   include/linux/inet.h \
   include/linux/fcntl.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/fcntl.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/fcntl.h \
   include/asm-generic/fcntl.h \
   include/linux/err.h \
   include/linux/minix_fs.h \
@@ -334,11 +335,11 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/debug/stack/usage.h) \
     $(wildcard include/config/cgroup/sched.h) \
     $(wildcard include/config/mm/owner.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/param.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/param.h \
     $(wildcard include/config/hz.h) \
   include/linux/timex.h \
   include/linux/param.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/timex.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/timex.h \
   arch/arm/mach-msm/include/mach/timex.h \
     $(wildcard include/config/msm/smp.h) \
   include/linux/jiffies.h \
@@ -354,11 +355,11 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/mmu/notifier.h) \
     $(wildcard include/config/transparent/hugepage.h) \
   include/linux/auxvec.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/auxvec.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/auxvec.h \
   include/linux/page-debug-flags.h \
     $(wildcard include/config/page/poisoning.h) \
     $(wildcard include/config/page/debug/something/else.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/page.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/page.h \
     $(wildcard include/config/cpu/copy/v3.h) \
     $(wildcard include/config/cpu/copy/v4wt.h) \
     $(wildcard include/config/cpu/copy/v4wb.h) \
@@ -368,8 +369,8 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/cpu/copy/v6.h) \
     $(wildcard include/config/have/arch/pfn/valid.h) \
     $(wildcard include/config/memory/hotplug/sparse.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/glue.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/memory.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/glue.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/memory.h \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/dram/size.h) \
     $(wildcard include/config/dram/base.h) \
@@ -390,26 +391,26 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/arch/msm/scorpion.h) \
     $(wildcard include/config/arch/msm/krait.h) \
     $(wildcard include/config/arch/msm7x27.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/sizes.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/sizes.h \
   include/asm-generic/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/flatmem.h) \
     $(wildcard include/config/discontigmem.h) \
     $(wildcard include/config/sparsemem/vmemmap.h) \
   include/asm-generic/getorder.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/mmu.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/mmu.h \
     $(wildcard include/config/cpu/has/asid.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/cputime.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/cputime.h \
   include/asm-generic/cputime.h \
   include/linux/sem.h \
   include/linux/ipc.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/ipcbuf.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/sembuf.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/ipcbuf.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/sembuf.h \
   include/linux/signal.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/signal.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/signal.h \
   include/asm-generic/signal-defs.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/sigcontext.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/siginfo.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/sigcontext.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/siginfo.h \
   include/asm-generic/siginfo.h \
   include/linux/topology.h \
     $(wildcard include/config/sched/smt.h) \
@@ -442,7 +443,7 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/have/arch/nodedata/extension.h) \
   include/linux/notifier.h \
   include/linux/srcu.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/topology.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/topology.h \
   include/asm-generic/topology.h \
   include/linux/proportions.h \
   include/linux/seccomp.h \
@@ -452,7 +453,7 @@ deps_init/do_mounts_initrd.o := \
   include/linux/plist.h \
     $(wildcard include/config/debug/pi/list.h) \
   include/linux/resource.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/resource.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/resource.h \
   include/asm-generic/resource.h \
   include/linux/timer.h \
     $(wildcard include/config/timer/stats.h) \
@@ -537,8 +538,8 @@ deps_init/do_mounts_initrd.o := \
   include/linux/kmod.h \
   include/linux/elf.h \
   include/linux/elf-em.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/elf.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/user.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/elf.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/user.h \
   include/linux/moduleparam.h \
     $(wildcard include/config/alpha.h) \
     $(wildcard include/config/ia64.h) \
@@ -546,7 +547,7 @@ deps_init/do_mounts_initrd.o := \
   include/linux/tracepoint.h \
   include/linux/jump_label.h \
     $(wildcard include/config/jump/label.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/module.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/module.h \
     $(wildcard include/config/arm/unwind.h) \
   include/trace/events/module.h \
   include/trace/define_trace.h \
@@ -554,7 +555,7 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/pm.h) \
     $(wildcard include/config/pm/sleep.h) \
     $(wildcard include/config/pm/runtime.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/device.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/device.h \
     $(wildcard include/config/dmabounce.h) \
   include/linux/pm_wakeup.h \
   include/linux/pagemap.h \
@@ -567,11 +568,11 @@ deps_init/do_mounts_initrd.o := \
   include/linux/debug_locks.h \
     $(wildcard include/config/debug/locking/api/selftests.h) \
   include/linux/range.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/pgtable.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/pgtable.h \
     $(wildcard include/config/highpte.h) \
   include/asm-generic/4level-fixup.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/proc-fns.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/glue-proc.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/proc-fns.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/glue-proc.h \
     $(wildcard include/config/cpu/arm610.h) \
     $(wildcard include/config/cpu/arm7tdmi.h) \
     $(wildcard include/config/cpu/arm710.h) \
@@ -595,8 +596,8 @@ deps_init/do_mounts_initrd.o := \
   arch/arm/mach-msm/include/mach/vmalloc.h \
     $(wildcard include/config/vmsplit/2g.h) \
     $(wildcard include/config/debug/ll.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/pgtable-hwdef.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/tlbflush.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/pgtable-hwdef.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/tlbflush.h \
     $(wildcard include/config/smp/on/up.h) \
     $(wildcard include/config/cpu/tlb/v3.h) \
     $(wildcard include/config/cpu/tlb/v4wt.h) \
@@ -622,15 +623,15 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/x86/32.h) \
     $(wildcard include/config/debug/highmem.h) \
   include/linux/uaccess.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/uaccess.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/unified.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/uaccess.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/unified.h \
     $(wildcard include/config/arm/asm/unified.h) \
   include/linux/hardirq.h \
   include/linux/ftrace_irq.h \
     $(wildcard include/config/ftrace/nmi/enter.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/hardirq.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/hardirq.h \
     $(wildcard include/config/local/timers.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/irq.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/irq.h \
   arch/arm/mach-msm/include/mach/irqs.h \
     $(wildcard include/config/arch/apq8064.h) \
     $(wildcard include/config/arch/msm8930.h) \
@@ -642,18 +643,18 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/arch/fsm9xxx.h) \
   arch/arm/mach-msm/include/mach/irqs-8x60.h \
   include/linux/irq_cpustat.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/cacheflush.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/cacheflush.h \
     $(wildcard include/config/arm/errata/411920.h) \
     $(wildcard include/config/cpu/cache/vipt.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/glue-cache.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/glue-cache.h \
     $(wildcard include/config/cpu/cache/v3.h) \
     $(wildcard include/config/cpu/cache/v4.h) \
     $(wildcard include/config/cpu/cache/v4wb.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/shmparam.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/cachetype.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/shmparam.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/cachetype.h \
     $(wildcard include/config/cpu/cache/vivt.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/kmap_types.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/highmem.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/kmap_types.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/highmem.h \
   include/linux/hugetlb_inline.h \
   include/linux/backing-dev.h \
     $(wildcard include/config/debug/fs.h) \
@@ -662,10 +663,10 @@ deps_init/do_mounts_initrd.o := \
   include/linux/bio.h \
   include/linux/ioprio.h \
   include/linux/iocontext.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/io.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/io.h \
   arch/arm/mach-msm/include/mach/io.h \
   include/linux/bsg.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/scatterlist.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/scatterlist.h \
   include/asm-generic/scatterlist.h \
     $(wildcard include/config/debug/sg.h) \
     $(wildcard include/config/need/sg/dma/length.h) \
@@ -694,7 +695,7 @@ deps_init/do_mounts_initrd.o := \
     $(wildcard include/config/frame/pointer.h) \
   include/linux/trace_clock.h \
   include/linux/kallsyms.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/ftrace.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/ftrace.h \
     $(wildcard include/config/old/mcount.h) \
   include/linux/cpu.h \
     $(wildcard include/config/arch/cpu/probe/release.h) \
@@ -702,7 +703,7 @@ deps_init/do_mounts_initrd.o := \
   include/linux/sysdev.h \
   include/linux/node.h \
   include/linux/irq_work.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/local.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/local.h \
   include/asm-generic/local.h \
   include/linux/mount.h \
   include/linux/root_dev.h \

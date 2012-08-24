@@ -107,6 +107,7 @@
 #include <mach/rpm-regulator.h>
 #include <mach/restart.h>
 #include <mach/cable_detect.h>
+#include <linux/msm_tsens.h>
 
 #include "board-pyramid.h"
 #include "devices.h"
@@ -135,6 +136,9 @@
 
 #ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_2_PHASE
 int set_two_phase_freq(int cpufreq);
+#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND
+int id_set_two_phase_freq(int cpufreq);
+#endif
 #endif
 
 /* Macros assume PMIC GPIOs start at 0 */
@@ -483,8 +487,8 @@ static struct regulator_init_data saw_s0_init_data = {
 		.constraints = {
 			.name = "8901_s0",
 			.valid_ops_mask = REGULATOR_CHANGE_VOLTAGE,
-			.min_uV = 840000,
-			.max_uV = 1250000,
+			.min_uV = 800000,
+			.max_uV = 1350000,
 		},
 		.consumer_supplies = vreg_consumers_8901_S0,
 		.num_consumer_supplies = ARRAY_SIZE(vreg_consumers_8901_S0),
@@ -494,8 +498,8 @@ static struct regulator_init_data saw_s1_init_data = {
 		.constraints = {
 			.name = "8901_s1",
 			.valid_ops_mask = REGULATOR_CHANGE_VOLTAGE,
-			.min_uV = 840000,
-			.max_uV = 1250000,
+			.min_uV = 800000,
+			.max_uV = 1350000,
 		},
 		.consumer_supplies = vreg_consumers_8901_S1,
 		.num_consumer_supplies = ARRAY_SIZE(vreg_consumers_8901_S1),
@@ -1581,7 +1585,7 @@ static struct msm_camera_sensor_flash_data flash_s5k3h1gx = {
 
 static struct camera_flash_cfg msm_camera_sensor_flash_cfg = {
 	.low_temp_limit		= 5,
-	.low_cap_limit		= 30,
+	.low_cap_limit		= 5,
 };
 
 static struct msm_camera_sensor_info msm_camera_sensor_s5k3h1gx_data = {
@@ -2631,8 +2635,8 @@ static struct regulator_consumer_supply vreg_consumers_PM8901_S4_PC[] = {
 /* RPM early regulator constraints */
 static struct rpm_regulator_init_data rpm_regulator_early_init_data[] = {
 	/*	 ID       a_on pd ss min_uV   max_uV   init_ip    freq */
-	RPM_SMPS(PM8058_S0, 0, 1, 1,  500000, 1250000, SMPS_HMIN, 1p92),
-	RPM_SMPS(PM8058_S1, 0, 1, 1,  500000, 1250000, SMPS_HMIN, 1p92),
+	RPM_SMPS(PM8058_S0, 0, 1, 1,  500000, 1350000, SMPS_HMIN, 1p92),
+	RPM_SMPS(PM8058_S1, 0, 1, 1,  500000, 1350000, SMPS_HMIN, 1p92),
 };
 
 /* RPM regulator constraints */
@@ -2784,10 +2788,19 @@ static struct platform_device *early_devices[] __initdata = {
 #endif
 };
 
+static struct tsens_platform_data pyr_tsens_pdata  = {
+		.tsens_factor		= 1000,
+		.hw_type		= MSM_8660,
+		.tsens_num_sensor	= 6,
+		.slope 			= 702,
+};
+
+/*
 static struct platform_device msm_tsens_device = {
 	.name   = "tsens-tm",
 	.id = -1,
 };
+*/
 
 #ifdef CONFIG_SENSORS_MSM_ADC
 static struct adc_access_fn xoadc_fn = {
@@ -3415,7 +3428,7 @@ static struct platform_device *pyramid_devices[] __initdata = {
 	&msm_device_rng,
 #endif
 
-	&msm_tsens_device,
+	//&msm_tsens_device,
 	&msm_rpm_device,
 	&cable_detect_device,
 #ifdef CONFIG_BT
@@ -6136,6 +6149,9 @@ static void __init msm8x60_init(struct msm_board_data *board_data)
 
 	raw_speed_bin = readl(QFPROM_SPEED_BIN_ADDR);
 	speed_bin = raw_speed_bin & 0xF;
+
+	msm_tsens_early_init(&pyr_tsens_pdata);
+
 	/*
 	 * Initialize RPM first as other drivers and devices may need
 	 * it for their initialization.
@@ -6219,6 +6235,9 @@ static void __init msm8x60_init(struct msm_board_data *board_data)
 
 #ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_2_PHASE
 	set_two_phase_freq(1134000);
+#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND
+	id_set_two_phase_freq(1134000);
+#endif
 #endif
 
 	msm8x60_init_tlmm();

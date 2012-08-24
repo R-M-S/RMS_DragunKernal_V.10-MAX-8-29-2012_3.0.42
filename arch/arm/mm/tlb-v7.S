@@ -48,6 +48,7 @@ ENTRY(v7wbi_flush_user_tlb_range)
 1:
 #ifdef CONFIG_ARCH_MSM8X60
 	ALT_SMP(mcr	p15, 0, r0, c8, c3, 3)	@ TLB invalidate U MVA (shareable)
+	ALT_SMP(mcr	p15, 0, r0, c8, c3, 3)	@ TLB invalidate U MVA all ASID (shareable)
 #else
 	ALT_SMP(mcr	p15, 0, r0, c8, c3, 1)	@ TLB invalidate U MVA (shareable)
 #endif

@@ -1,4 +1,4 @@
-cmd_arch/arm/kernel/entry-armv.o := /home/rms/android/kernel/cm/scripts/gcc-wrapper.py arm-eabi-gcc -Wp,-MD,arch/arm/kernel/.entry-armv.o.d  -nostdinc -isystem /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/home/rms/android/kernel/cm/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -D__ASSEMBLY__ -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables  -D__LINUX_ARM_ARCH__=7 -march=armv7-a  -include asm/unified.h -msoft-float -gdwarf-2        -c -o arch/arm/kernel/entry-armv.o arch/arm/kernel/entry-armv.S
+cmd_arch/arm/kernel/entry-armv.o := /home/rms/android/kernel/tam/scripts/gcc-wrapper.py arm-eabi-gcc -Wp,-MD,arch/arm/kernel/.entry-armv.o.d  -nostdinc -isystem /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/home/rms/android/kernel/tam/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -D__ASSEMBLY__ -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables  -D__LINUX_ARM_ARCH__=7 -march=armv7-a  -include asm/unified.h -msoft-float -gdwarf-2        -c -o arch/arm/kernel/entry-armv.o arch/arm/kernel/entry-armv.S
 
 source_arch/arm/kernel/entry-armv.o := arch/arm/kernel/entry-armv.S
 
@@ -24,9 +24,9 @@ deps_arch/arm/kernel/entry-armv.o := \
     $(wildcard include/config/smp.h) \
     $(wildcard include/config/emulate/domain/manager/v7.h) \
     $(wildcard include/config/arm/thumb.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/unified.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/unified.h \
     $(wildcard include/config/arm/asm/unified.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/memory.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/memory.h \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/highmem.h) \
     $(wildcard include/config/dram/size.h) \
@@ -47,9 +47,9 @@ deps_arch/arm/kernel/entry-armv.o := \
     $(wildcard include/config/arch/dma/addr/t/64bit.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
     $(wildcard include/config/64bit.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/types.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/types.h \
   include/asm-generic/int-ll64.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/bitsperlong.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/bitsperlong.h \
   include/asm-generic/bitsperlong.h \
   arch/arm/mach-msm/include/mach/memory.h \
     $(wildcard include/config/phys/offset.h) \
@@ -65,13 +65,13 @@ deps_arch/arm/kernel/entry-armv.o := \
     $(wildcard include/config/arch/msm/scorpion.h) \
     $(wildcard include/config/arch/msm/krait.h) \
     $(wildcard include/config/arch/msm7x27.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/sizes.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/sizes.h \
   include/asm-generic/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/flatmem.h) \
     $(wildcard include/config/discontigmem.h) \
     $(wildcard include/config/sparsemem/vmemmap.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/glue-df.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/glue-df.h \
     $(wildcard include/config/cpu/abrt/lv4t.h) \
     $(wildcard include/config/cpu/abrt/ev4.h) \
     $(wildcard include/config/cpu/abrt/ev4t.h) \
@@ -79,28 +79,28 @@ deps_arch/arm/kernel/entry-armv.o := \
     $(wildcard include/config/cpu/abrt/ev5t.h) \
     $(wildcard include/config/cpu/abrt/ev6.h) \
     $(wildcard include/config/cpu/abrt/ev7.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/glue.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/glue-pf.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/glue.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/glue-pf.h \
     $(wildcard include/config/cpu/pabrt/legacy.h) \
     $(wildcard include/config/cpu/pabrt/v6.h) \
     $(wildcard include/config/cpu/pabrt/v7.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/vfpmacros.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/vfpmacros.h \
     $(wildcard include/config/vfpv3.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/hwcap.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/vfp.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/hwcap.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/vfp.h \
   arch/arm/mach-msm/include/mach/entry-macro.S \
     $(wildcard include/config/msm/vic.h) \
     $(wildcard include/config/arm/gic.h) \
   arch/arm/mach-msm/include/mach/entry-macro-qgic.S \
     $(wildcard include/config/request/ipi.h) \
   arch/arm/mach-msm/include/mach/hardware.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/hardware/gic.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/thread_notify.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/unwind.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/hardware/gic.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/thread_notify.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/unwind.h \
     $(wildcard include/config/arm/unwind.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/unistd.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/unistd.h \
     $(wildcard include/config/oabi/compat.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/tls.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/tls.h \
     $(wildcard include/config/tls/reg/emul.h) \
     $(wildcard include/config/cpu/v6.h) \
     $(wildcard include/config/cpu/32v6k.h) \
@@ -112,22 +112,22 @@ deps_arch/arm/kernel/entry-armv.o := \
     $(wildcard include/config/modules.h) \
     $(wildcard include/config/hotplug.h) \
   include/linux/linkage.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/linkage.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/assembler.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/linkage.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/assembler.h \
     $(wildcard include/config/cpu/feroceon.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/ptrace.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/domain.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/ptrace.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/domain.h \
     $(wildcard include/config/verify/permission/fault.h) \
     $(wildcard include/config/io/36.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/asm-offsets.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/asm-offsets.h \
   include/generated/asm-offsets.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/errno.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/errno.h \
   include/asm-generic/errno.h \
   include/asm-generic/errno-base.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/thread_info.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/fpstate.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/entry-macro-multi.S \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/fpstate.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/entry-macro-multi.S \
     $(wildcard include/config/local/timers.h) \
 
 arch/arm/kernel/entry-armv.o: $(deps_arch/arm/kernel/entry-armv.o)

@@ -1,4 +1,4 @@
-cmd_arch/arm/boot/compressed/head.o := /home/rms/android/kernel/cm/scripts/gcc-wrapper.py arm-eabi-gcc -Wp,-MD,arch/arm/boot/compressed/.head.o.d  -nostdinc -isystem /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/home/rms/android/kernel/cm/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -D__ASSEMBLY__ -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables  -D__LINUX_ARM_ARCH__=7 -march=armv7-a  -include asm/unified.h -msoft-float -gdwarf-2    -Wa,-march=all  -DTEXT_OFFSET=0x00008000   -c -o arch/arm/boot/compressed/head.o arch/arm/boot/compressed/head.S
+cmd_arch/arm/boot/compressed/head.o := /home/rms/android/kernel/tam/scripts/gcc-wrapper.py arm-eabi-gcc -Wp,-MD,arch/arm/boot/compressed/.head.o.d  -nostdinc -isystem /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/home/rms/android/kernel/tam/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -D__ASSEMBLY__ -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables  -D__LINUX_ARM_ARCH__=7 -march=armv7-a  -include asm/unified.h -msoft-float -gdwarf-2    -Wa,-march=all  -DTEXT_OFFSET=0x00008000   -c -o arch/arm/boot/compressed/head.o arch/arm/boot/compressed/head.S
 
 source_arch/arm/boot/compressed/head.o := arch/arm/boot/compressed/head.S
 
@@ -24,7 +24,7 @@ deps_arch/arm/boot/compressed/head.o := \
     $(wildcard include/config/thumb2/kernel.h) \
     $(wildcard include/config/processor/id.h) \
     $(wildcard include/config/cpu/feroceon/old/id.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/unified.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/unified.h \
     $(wildcard include/config/arm/asm/unified.h) \
   include/linux/linkage.h \
   include/linux/compiler.h \
@@ -33,7 +33,7 @@ deps_arch/arm/boot/compressed/head.o := \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/enable/must/check.h) \
     $(wildcard include/config/enable/warn/deprecated.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/linkage.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/linkage.h \
 
 arch/arm/boot/compressed/head.o: $(deps_arch/arm/boot/compressed/head.o)
 

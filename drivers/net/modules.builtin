@@ -1,5 +1,7 @@
 kernel/drivers/net/kineto_gan.ko
 kernel/drivers/net/ppp_generic.ko
+kernel/drivers/net/ppp_async.ko
+kernel/drivers/net/ppp_synctty.ko
 kernel/drivers/net/ppp_deflate.ko
 kernel/drivers/net/bsd_comp.ko
 kernel/drivers/net/ppp_mppe.ko

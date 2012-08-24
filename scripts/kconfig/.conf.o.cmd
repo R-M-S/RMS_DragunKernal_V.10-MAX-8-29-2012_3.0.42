@@ -13,7 +13,7 @@ deps_scripts/kconfig/conf.o := \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
-  /usr/lib/gcc/x86_64-linux-gnu/4.6.1/include/stddef.h \
+  /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h \
   /usr/include/x86_64-linux-gnu/bits/locale.h \
   /usr/include/xlocale.h \
   /usr/include/ctype.h \
@@ -26,7 +26,7 @@ deps_scripts/kconfig/conf.o := \
   /usr/include/libio.h \
   /usr/include/_G_config.h \
   /usr/include/wchar.h \
-  /usr/lib/gcc/x86_64-linux-gnu/4.6.1/include/stdarg.h \
+  /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdarg.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
   /usr/include/x86_64-linux-gnu/bits/stdio.h \
@@ -40,6 +40,7 @@ deps_scripts/kconfig/conf.o := \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/sigset.h \
   /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/alloca.h \
@@ -60,7 +61,7 @@ deps_scripts/kconfig/conf.o := \
   scripts/kconfig/lkc.h \
     $(wildcard include/config/list.h) \
   scripts/kconfig/expr.h \
-  /usr/lib/gcc/x86_64-linux-gnu/4.6.1/include/stdbool.h \
+  /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdbool.h \
   /usr/include/libintl.h \
   scripts/kconfig/lkc_proto.h \
 

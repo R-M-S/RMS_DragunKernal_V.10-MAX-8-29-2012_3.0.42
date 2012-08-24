@@ -1,15 +1,15 @@
-cmd_arch/arm/mach-msm/gpiomux-v2.o := /home/rms/android/kernel/cm/scripts/gcc-wrapper.py arm-eabi-gcc -Wp,-MD,arch/arm/mach-msm/.gpiomux-v2.o.d  -nostdinc -isystem /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/home/rms/android/kernel/cm/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Os -marm -fno-dwarf2-cfi-asm -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack   -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(gpiomux_v2)"  -D"KBUILD_MODNAME=KBUILD_STR(gpiomux_v2)" -c -o arch/arm/mach-msm/gpiomux-v2.o arch/arm/mach-msm/gpiomux-v2.c
+cmd_arch/arm/mach-msm/gpiomux-v2.o := /home/rms/android/kernel/tam/scripts/gcc-wrapper.py arm-eabi-gcc -Wp,-MD,arch/arm/mach-msm/.gpiomux-v2.o.d  -nostdinc -isystem /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/home/rms/android/kernel/tam/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Os -marm -fno-dwarf2-cfi-asm -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack  -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(gpiomux_v2)"  -D"KBUILD_MODNAME=KBUILD_STR(gpiomux_v2)" -c -o arch/arm/mach-msm/gpiomux-v2.o arch/arm/mach-msm/gpiomux-v2.c
 
 source_arch/arm/mach-msm/gpiomux-v2.o := arch/arm/mach-msm/gpiomux-v2.c
 
 deps_arch/arm/mach-msm/gpiomux-v2.o := \
   include/linux/bitops.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/types.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/types.h \
   include/asm-generic/int-ll64.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/bitsperlong.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/bitsperlong.h \
   include/asm-generic/bitsperlong.h \
     $(wildcard include/config/64bit.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/bitops.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/bitops.h \
     $(wildcard include/config/smp.h) \
   include/linux/compiler.h \
     $(wildcard include/config/sparse/rcu/pointer.h) \
@@ -21,7 +21,7 @@ deps_arch/arm/mach-msm/gpiomux-v2.o := \
     $(wildcard include/config/arch/supports/optimized/inlining.h) \
     $(wildcard include/config/optimize/inlining.h) \
   include/linux/compiler-gcc4.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/system.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/system.h \
     $(wildcard include/config/function/graph/tracer.h) \
     $(wildcard include/config/cpu/32v6k.h) \
     $(wildcard include/config/cpu/xsc3.h) \
@@ -32,18 +32,18 @@ deps_arch/arm/mach-msm/gpiomux-v2.o := \
     $(wildcard include/config/cpu/sa110.h) \
     $(wildcard include/config/cpu/v6.h) \
   include/linux/linkage.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/linkage.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/linkage.h \
   include/linux/irqflags.h \
     $(wildcard include/config/trace/irqflags.h) \
     $(wildcard include/config/irqsoff/tracer.h) \
     $(wildcard include/config/preempt/tracer.h) \
     $(wildcard include/config/trace/irqflags/support.h) \
   include/linux/typecheck.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/irqflags.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/ptrace.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/irqflags.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/ptrace.h \
     $(wildcard include/config/cpu/endian/be8.h) \
     $(wildcard include/config/arm/thumb.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/hwcap.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/hwcap.h \
   include/linux/stddef.h \
   include/linux/types.h \
     $(wildcard include/config/uid16.h) \
@@ -51,8 +51,8 @@ deps_arch/arm/mach-msm/gpiomux-v2.o := \
     $(wildcard include/config/arch/dma/addr/t/64bit.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
   include/linux/posix_types.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/posix_types.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/outercache.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/posix_types.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/outercache.h \
     $(wildcard include/config/outer/cache/sync.h) \
     $(wildcard include/config/outer/cache.h) \
   include/asm-generic/cmpxchg-local.h \
@@ -64,16 +64,16 @@ deps_arch/arm/mach-msm/gpiomux-v2.o := \
   include/asm-generic/bitops/const_hweight.h \
   include/asm-generic/bitops/lock.h \
   include/asm-generic/bitops/le.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/byteorder.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/byteorder.h \
   include/linux/byteorder/little_endian.h \
   include/linux/swab.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/swab.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/swab.h \
   include/linux/byteorder/generic.h \
   include/linux/io.h \
     $(wildcard include/config/mmu.h) \
     $(wildcard include/config/has/ioport.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/io.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/memory.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/io.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/memory.h \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/thumb2/kernel.h) \
     $(wildcard include/config/highmem.h) \
@@ -97,14 +97,14 @@ deps_arch/arm/mach-msm/gpiomux-v2.o := \
     $(wildcard include/config/arch/msm/scorpion.h) \
     $(wildcard include/config/arch/msm/krait.h) \
     $(wildcard include/config/arch/msm7x27.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/sizes.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/sizes.h \
   include/asm-generic/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/flatmem.h) \
     $(wildcard include/config/discontigmem.h) \
     $(wildcard include/config/sparsemem/vmemmap.h) \
   arch/arm/mach-msm/include/mach/io.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/page.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/page.h \
     $(wildcard include/config/cpu/copy/v3.h) \
     $(wildcard include/config/cpu/copy/v4wt.h) \
     $(wildcard include/config/cpu/copy/v4wb.h) \
@@ -114,7 +114,7 @@ deps_arch/arm/mach-msm/gpiomux-v2.o := \
     $(wildcard include/config/cpu/copy/v6.h) \
     $(wildcard include/config/have/arch/pfn/valid.h) \
     $(wildcard include/config/memory/hotplug/sparse.h) \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/glue.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/glue.h \
   include/asm-generic/getorder.h \
   arch/arm/mach-msm/include/mach/msm_iomap.h \
     $(wildcard include/config/arch/apq8064.h) \
@@ -129,7 +129,7 @@ deps_arch/arm/mach-msm/gpiomux-v2.o := \
   arch/arm/mach-msm/include/mach/gpiomux.h \
     $(wildcard include/config/msm/gpiomux.h) \
   include/linux/errno.h \
-  /home/rms/android/kernel/cm/arch/arm/include/asm/errno.h \
+  /home/rms/android/kernel/tam/arch/arm/include/asm/errno.h \
   include/asm-generic/errno.h \
   include/asm-generic/errno-base.h \
 
