@@ -134,6 +134,19 @@ $(error unknown target $@))))                                       \
 perf-%pkg: FORCE
 	$(call cmd,perf_tar)
 
+# Android target
+# ---------------------------------------------------------------------------
+android-pkg: FORCE
+	@$(MAKE) clean
+	@$(MAKE) zImage modules
+	mkdir -p $(objtree)/android/
+	cp -r $(srctree)/releasetools/* $(objtree)/android
+	cp -fv $(objtree)/arch/arm/boot/zImage $(objtree)/android/kernel/zImage
+	find $(objtree) -type f -iname '*.ko' -exec cp -v {} $(objtree)/android/system/lib/modules \;
+	cd $(objtree)/android && zip -9 -r $(objtree)/$(KERNELRELEASE).zip kernel system META-INF
+
+clean-dirs += $(objtree)/android/
+
 # Help text displayed when executing 'make help'
 # ---------------------------------------------------------------------------
 help: FORCE
@@ -148,4 +161,5 @@ help: FORCE
 	@echo '  perf-targz-src-pkg  - Build $(perf-tar).tar.gz source tarball'
 	@echo '  perf-tarbz2-src-pkg - Build $(perf-tar).tar.bz2 source tarball'
 	@echo '  perf-tarxz-src-pkg  - Build $(perf-tar).tar.xz source tarball'
+	@echo '  android-pkg         - Build the kernel as a flashable zip for android devices'
 

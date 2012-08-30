@@ -133,7 +133,7 @@ static struct dbs_tuners {
 	unsigned int sampling_down_factor;
 	int          powersave_bias;
 	unsigned int io_is_busy;
-#ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_2_PHASE
+#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND_2_PHASE
 	unsigned int two_phase_freq;
 #endif
 } dbs_tuners_ins = {
@@ -142,7 +142,7 @@ static struct dbs_tuners {
 	.down_differential = DEF_FREQUENCY_DOWN_DIFFERENTIAL,
 	.ignore_nice = 0,
 	.powersave_bias = 0,
-#ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_2_PHASE
+#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND_2_PHASE
 	.two_phase_freq = 0,
 #endif
 };
@@ -305,7 +305,7 @@ show_one(down_differential, down_differential);
 show_one(sampling_down_factor, sampling_down_factor);
 show_one(ignore_nice_load, ignore_nice);
 
-#ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_2_PHASE
+#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND_2_PHASE
 show_one(two_phase_freq, two_phase_freq);
 #endif
 
@@ -428,7 +428,7 @@ static ssize_t store_sampling_rate(struct kobject *a, struct attribute *b,
 }
 #endif
 
-#ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_2_PHASE
+#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND_2_PHASE
 static ssize_t store_two_phase_freq(struct kobject *a, struct attribute *b,
 				   const char *buf, size_t count)
 {
@@ -547,8 +547,11 @@ static ssize_t store_powersave_bias(struct kobject *a, struct attribute *b,
 {
 	int input  = 0;
 	int bypass = 0;
-	int ret, cpu, reenable_timer;
+	int ret, cpu, reenable_timer, j;
 	struct cpu_dbs_info_s *dbs_info;
+
+	struct cpumask cpus_timer_done;
+	cpumask_clear(&cpus_timer_done);
 
 	ret = sscanf(buf, "%d", &input);
 
@@ -582,10 +585,25 @@ static ssize_t store_powersave_bias(struct kobject *a, struct attribute *b,
 					continue;
 
 				dbs_info = &per_cpu(od_cpu_dbs_info, cpu);
+
+				for_each_cpu(j, &cpus_timer_done) {
+					if (!dbs_info->cur_policy) {
+						printk(KERN_ERR
+						"%s Dbs policy is NULL\n",
+						 __func__);
+						goto skip_this_cpu;
+					}
+					if (cpumask_test_cpu(j, dbs_info->
+							cur_policy->cpus))
+						goto skip_this_cpu;
+				}
+
+				cpumask_set_cpu(cpu, &cpus_timer_done);
 				if (dbs_info->cur_policy) {
 					/* restart dbs timer */
 					dbs_timer_init(dbs_info);
 				}
+skip_this_cpu:
 				unlock_policy_rwsem_write(cpu);
 			}
 		}
@@ -598,6 +616,21 @@ static ssize_t store_powersave_bias(struct kobject *a, struct attribute *b,
 				continue;
 
 			dbs_info = &per_cpu(od_cpu_dbs_info, cpu);
+
+			for_each_cpu(j, &cpus_timer_done) {
+				if (!dbs_info->cur_policy) {
+					printk(KERN_ERR
+					"%s Dbs policy is NULL\n",
+					 __func__);
+					goto skip_this_cpu_bypass;
+				}
+				if (cpumask_test_cpu(j, dbs_info->
+							cur_policy->cpus))
+					goto skip_this_cpu_bypass;
+			}
+
+			cpumask_set_cpu(cpu, &cpus_timer_done);
+
 			if (dbs_info->cur_policy) {
 				/* cpu using intellidemand, cancel dbs timer */
 				mutex_lock(&dbs_info->timer_mutex);
@@ -610,6 +643,7 @@ static ssize_t store_powersave_bias(struct kobject *a, struct attribute *b,
 
 				mutex_unlock(&dbs_info->timer_mutex);
 			}
+skip_this_cpu_bypass:
 			unlock_policy_rwsem_write(cpu);
 		}
 	}
@@ -710,7 +744,7 @@ define_one_global_rw(down_differential);
 define_one_global_rw(sampling_down_factor);
 define_one_global_rw(ignore_nice_load);
 define_one_global_rw(powersave_bias);
-#ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_2_PHASE
+#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND_2_PHASE
 define_one_global_rw(two_phase_freq);
 #endif
 
@@ -731,7 +765,7 @@ static struct attribute *dbs_attributes[] = {
 	&ignore_nice_load.attr,
 	&powersave_bias.attr,
 	&io_is_busy.attr,
-#ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_2_PHASE
+#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND_2_PHASE
 	&two_phase_freq.attr,
 #endif
 #ifdef CONFIG_SEC_LIMIT_MAX_FREQ
@@ -762,7 +796,7 @@ static void dbs_freq_increase(struct cpufreq_policy *p, unsigned int freq)
 			CPUFREQ_RELATION_L : CPUFREQ_RELATION_H);
 }
 
-#ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_2_PHASE
+#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND_2_PHASE
 int id_set_two_phase_freq(int cpufreq)
 {
 	dbs_tuners_ins.two_phase_freq = cpufreq;
@@ -776,7 +810,7 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 
 	struct cpufreq_policy *policy;
 	unsigned int j;
-#ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_2_PHASE
+#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND_2_PHASE
 	static unsigned int phase = 0;
 	static unsigned int counter = 0;
 #endif
@@ -867,7 +901,7 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 	/* Check for frequency increase */
 	if (max_load_freq > dbs_tuners_ins.up_threshold * policy->cur) {
 		/* If switching to max speed, apply sampling_down_factor */
-#ifndef CONFIG_CPU_FREQ_GOV_ONDEMAND_2_PHASE
+#ifndef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND_2_PHASE
 		if (policy->cur < policy->max)
 			this_dbs_info->rate_mult =
 				dbs_tuners_ins.sampling_down_factor;
@@ -895,7 +929,7 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 #endif
 		return;
 	}
-#ifdef CONFIG_CPU_FREQ_GOV_ONDEMAND_2_PHASE
+#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND_2_PHASE
 	if (counter > 0) {
 		counter--;
 		if (counter == 0) {

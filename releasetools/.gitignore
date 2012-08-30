@@ -1,0 +1,2 @@
+kernel/zImage
+system/lib/modules/*.ko

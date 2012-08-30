@@ -232,9 +232,10 @@ int suspend_devices_and_enter(suspend_state_t state)
 	suspend_test_start();
 	dpm_resume_end(PMSG_RESUME);
 	suspend_test_finish("resume devices");
-	ftrace_start();
+
 	if (!suspend_console_deferred)
 		resume_console();
+	ftrace_start();
  Close:
 	if (suspend_ops->end)
 		suspend_ops->end();

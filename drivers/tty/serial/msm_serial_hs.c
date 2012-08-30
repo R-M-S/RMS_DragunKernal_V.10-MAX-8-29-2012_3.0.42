@@ -165,6 +165,8 @@ struct msm_hs_port {
 	void (*exit_lpm_cb)(struct uart_port *);
 #endif
 	struct wake_lock dma_wake_lock;  /* held while any DMA active */
+
+	struct dentry *loopback_dir;
 };
 
 #define MSM_UARTDM_BURST_SIZE 16   /* DM burst size (in bytes) */
@@ -368,18 +370,20 @@ DEFINE_SIMPLE_ATTRIBUTE(loopback_enable_fops, msm_serial_loopback_enable_get,
  * test scripts.
  * writing 0 disables the internal loopback mode. Default is disabled.
  */
-static void __init msm_serial_debugfs_init(struct msm_hs_port *msm_uport,
+static void __devinit msm_serial_debugfs_init(struct msm_hs_port *msm_uport,
 					   int id)
 {
 	char node_name[15];
 	snprintf(node_name, sizeof(node_name), "loopback.%d", id);
-	if (IS_ERR_OR_NULL(debugfs_create_file(node_name,
-					       S_IRUGO | S_IWUSR,
-					       debug_base,
-					       msm_uport,
-					       &loopback_enable_fops))) {
-		debugfs_remove_recursive(debug_base);
-	}
+	msm_uport->loopback_dir = debugfs_create_file(node_name,
+						S_IRUGO | S_IWUSR,
+						debug_base,
+						msm_uport,
+						&loopback_enable_fops);
+
+	if (IS_ERR_OR_NULL(msm_uport->loopback_dir))
+		pr_err("%s(): Cannot create loopback.%d debug entry",
+							__func__, id);
 }
 
 static int __devexit msm_hs_remove(struct platform_device *pdev)
@@ -403,7 +407,7 @@ static int __devexit msm_hs_remove(struct platform_device *pdev)
 			dev_err(dev, "GPIO config error\n");
 
 	sysfs_remove_file(&pdev->dev.kobj, &dev_attr_clock.attr);
-	debugfs_remove_recursive(debug_base);
+	debugfs_remove(msm_uport->loopback_dir);
 
 	dma_unmap_single(dev, msm_uport->rx.mapped_cmd_ptr, sizeof(dmov_box),
 			 DMA_TO_DEVICE);
@@ -442,7 +446,6 @@ static int msm_hs_init_clk(struct uart_port *uport)
 	int ret;
 	struct msm_hs_port *msm_uport = UARTDM_TO_MSM(uport);
 
-	wake_lock(&msm_uport->dma_wake_lock);
 	/* Set up the MREG/NREG/DREG/MNDREG */
 	ret = clk_set_rate(msm_uport->clk, uport->uartclk);
 	if (ret) {
@@ -458,6 +461,7 @@ static int msm_hs_init_clk(struct uart_port *uport)
 	if (msm_uport->pclk) {
 		ret = clk_enable(msm_uport->pclk);
 		if (ret) {
+			clk_disable(msm_uport->clk);
 			dev_err(uport->dev,
 				"Error could not turn on UART pclk\n");
 			return ret;
@@ -764,8 +768,7 @@ static void msm_hs_set_termios(struct uart_port *uport,
 		 */
 		mb();
 		/* do discard flush */
-		msm_dmov_stop_cmd(msm_uport->dma_rx_channel,
-				  &msm_uport->rx.xfer, 0);
+		msm_dmov_flush(msm_uport->dma_rx_channel);
 	}
 
 	msm_hs_write(uport, UARTDM_IMR_ADDR, msm_uport->imr_reg);
@@ -826,8 +829,7 @@ static void msm_hs_stop_rx_locked(struct uart_port *uport)
 	if (msm_uport->rx.flush == FLUSH_NONE) {
 		wake_lock(&msm_uport->rx.wake_lock);
 		/* do discard flush */
-		msm_dmov_stop_cmd(msm_uport->dma_rx_channel,
-				  &msm_uport->rx.xfer, 0);
+		msm_dmov_flush(msm_uport->dma_rx_channel);
 	}
 	if (msm_uport->rx.flush != FLUSH_SHUTDOWN)
 		msm_uport->rx.flush = FLUSH_STOP;
@@ -1625,10 +1627,14 @@ static int msm_hs_startup(struct uart_port *uport)
 	tx->dma_base = dma_map_single(uport->dev, tx_buf->buf, UART_XMIT_SIZE,
 				      DMA_TO_DEVICE);
 
+	wake_lock(&msm_uport->dma_wake_lock);
 	/* turn on uart clk */
 	ret = msm_hs_init_clk(uport);
-	if (unlikely(ret))
+	if (unlikely(ret)) {
+		pr_err("Turning ON uartclk error\n");
+		wake_unlock(&msm_uport->dma_wake_lock);
 		return ret;
+	}
 
 	/* Set auto RFR Level */
 	data = msm_hs_read(uport, UARTDM_MR1_ADDR);
@@ -1693,20 +1699,26 @@ static int msm_hs_startup(struct uart_port *uport)
 
 	if (use_low_power_wakeup(msm_uport)) {
 		ret = irq_set_irq_wake(msm_uport->wakeup.irq, 1);
-		if (unlikely(ret))
-			return ret;
+		if (unlikely(ret)) {
+			pr_err("%s():Err setting wakeup irq\n", __func__);
+			goto deinit_uart_clk;
+		}
 	}
 
 	ret = request_irq(uport->irq, msm_hs_isr, IRQF_TRIGGER_HIGH,
 			  "msm_hs_uart", msm_uport);
-	if (unlikely(ret))
-		return ret;
+	if (unlikely(ret)) {
+		pr_err("%s():Error getting uart irq\n", __func__);
+		goto free_wake_irq;
+	}
 	if (use_low_power_wakeup(msm_uport)) {
 		ret = request_irq(msm_uport->wakeup.irq, msm_hs_wakeup_isr,
 				  IRQF_TRIGGER_FALLING,
 				  "msm_hs_wakeup", msm_uport);
-		if (unlikely(ret))
-			return ret;
+		if (unlikely(ret)) {
+			pr_err("%s():Err getting uart wakeup_irq\n", __func__);
+			goto free_uart_irq;
+		}
 		disable_irq(msm_uport->wakeup.irq);
 	}
 
@@ -1720,8 +1732,19 @@ static int msm_hs_startup(struct uart_port *uport)
 		dev_err(uport->dev, "set active error:%d\n", ret);
 	pm_runtime_enable(uport->dev);
 
-
 	return 0;
+
+free_uart_irq:
+	free_irq(uport->irq, msm_uport);
+free_wake_irq:
+	irq_set_irq_wake(msm_uport->wakeup.irq, 0);
+deinit_uart_clk:
+	clk_disable(msm_uport->clk);
+	if (msm_uport->pclk)
+		clk_disable(msm_uport->pclk);
+	wake_unlock(&msm_uport->dma_wake_lock);
+
+	return ret;
 }
 
 /* Initialize tx and rx data structures */
@@ -1847,7 +1870,7 @@ free_tx_command_ptr:
 	return ret;
 }
 
-static int __init msm_hs_probe(struct platform_device *pdev)
+static int __devinit msm_hs_probe(struct platform_device *pdev)
 {
 	int ret;
 	struct uart_port *uport;
@@ -1992,8 +2015,7 @@ static int __init msm_serial_hs_init(void)
 	if (IS_ERR_OR_NULL(debug_base))
 		pr_info("msm_serial_hs: Cannot create debugfs dir\n");
 
-	ret = platform_driver_probe(&msm_serial_hs_platform_driver,
-					msm_hs_probe);
+	ret = platform_driver_register(&msm_serial_hs_platform_driver);
 	if (ret) {
 		printk(KERN_ERR "%s failed to load\n", __FUNCTION__);
 		debugfs_remove_recursive(debug_base);
@@ -2063,6 +2085,7 @@ static void msm_hs_shutdown(struct uart_port *uport)
 static void __exit msm_serial_hs_exit(void)
 {
 	printk(KERN_INFO "msm_serial_hs module removed\n");
+	debugfs_remove_recursive(debug_base);
 	platform_driver_unregister(&msm_serial_hs_platform_driver);
 	uart_unregister_driver(&msm_hs_driver);
 }
@@ -2103,7 +2126,8 @@ static const struct dev_pm_ops msm_hs_dev_pm_ops = {
 };
 
 static struct platform_driver msm_serial_hs_platform_driver = {
-	.remove = msm_hs_remove,
+	.probe	= msm_hs_probe,
+	.remove = __devexit_p(msm_hs_remove),
 	.driver = {
 		.name = "msm_serial_hs",
 		.pm   = &msm_hs_dev_pm_ops,

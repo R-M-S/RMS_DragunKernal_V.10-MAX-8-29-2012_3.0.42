@@ -123,7 +123,7 @@ unsigned int suspend_freq;
 
 
 
-static unsigned int dbs_enable=0;      /* number of CPUs using this policy */
+static unsigned int dbs_enable=0;	/* number of CPUs using this policy */
 
 // used for imoseyon's mods
 static unsigned int suspended = 0;

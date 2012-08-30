@@ -1,1 +1,1 @@
-cmd_drivers/scsi/scsi_wait_scan.ko := arm-eabi-ld -EL -r  -T /home/rms/android/kernel/tam/scripts/module-common.lds --build-id  -o drivers/scsi/scsi_wait_scan.ko drivers/scsi/scsi_wait_scan.o drivers/scsi/scsi_wait_scan.mod.o
+cmd_drivers/scsi/scsi_wait_scan.ko := arm-eabi-ld -EL -r  -T /home/rms/EXP/scripts/module-common.lds --build-id -T /home/rms/EXP/scripts/module-common.lds -o drivers/scsi/scsi_wait_scan.ko drivers/scsi/scsi_wait_scan.o drivers/scsi/scsi_wait_scan.mod.o

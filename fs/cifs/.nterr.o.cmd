@@ -1,4 +1,4 @@
-cmd_fs/cifs/nterr.o := /home/rms/android/kernel/tam/scripts/gcc-wrapper.py arm-eabi-gcc -Wp,-MD,fs/cifs/.nterr.o.d  -nostdinc -isystem /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/home/rms/android/kernel/tam/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Os -marm -fno-dwarf2-cfi-asm -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack  -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(nterr)"  -D"KBUILD_MODNAME=KBUILD_STR(cifs)" -c -o fs/cifs/nterr.o fs/cifs/nterr.c
+cmd_fs/cifs/nterr.o := /home/rms/EXP/scripts/gcc-wrapper.py arm-eabi-gcc -Wp,-MD,fs/cifs/.nterr.o.d  -nostdinc -isystem /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/home/rms/EXP/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -marm -fno-dwarf2-cfi-asm -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -fno-stack-protector -Wno-uninitialized -fomit-frame-pointer -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack  -DMODULE -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a8 -march=armv7-a -mfpu=neon -ftree-vectorize -funswitch-loops -DMODULE -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr -ffast-math -fsingle-precision-constant -mtune=cortex-a8 -marm -march=armv7-a -mfpu=neon -ftree-vectorize -mvectorize-with-neon-quad -funroll-loops -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(nterr)"  -D"KBUILD_MODNAME=KBUILD_STR(cifs)" -c -o fs/cifs/nterr.o fs/cifs/nterr.c
 
 source_fs/cifs/nterr.o := fs/cifs/nterr.c
 
@@ -10,9 +10,9 @@ deps_fs/cifs/nterr.o := \
     $(wildcard include/config/arch/dma/addr/t/64bit.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
     $(wildcard include/config/64bit.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/types.h \
+  /home/rms/EXP/arch/arm/include/asm/types.h \
   include/asm-generic/int-ll64.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/bitsperlong.h \
+  /home/rms/EXP/arch/arm/include/asm/bitsperlong.h \
   include/asm-generic/bitsperlong.h \
   include/linux/posix_types.h \
   include/linux/stddef.h \
@@ -26,8 +26,9 @@ deps_fs/cifs/nterr.o := \
     $(wildcard include/config/arch/supports/optimized/inlining.h) \
     $(wildcard include/config/optimize/inlining.h) \
   include/linux/compiler-gcc4.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/posix_types.h \
+  /home/rms/EXP/arch/arm/include/asm/posix_types.h \
   include/linux/fs.h \
+    $(wildcard include/config/fsync/control.h) \
     $(wildcard include/config/sysfs.h) \
     $(wildcard include/config/smp.h) \
     $(wildcard include/config/security.h) \
@@ -45,12 +46,12 @@ deps_fs/cifs/nterr.o := \
     $(wildcard include/config/migration.h) \
   include/linux/limits.h \
   include/linux/ioctl.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/ioctl.h \
+  /home/rms/EXP/arch/arm/include/asm/ioctl.h \
   include/asm-generic/ioctl.h \
   include/linux/blk_types.h \
     $(wildcard include/config/blk/dev/integrity.h) \
   include/linux/linkage.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/linkage.h \
+  /home/rms/EXP/arch/arm/include/asm/linkage.h \
   include/linux/wait.h \
     $(wildcard include/config/lockdep.h) \
   include/linux/list.h \
@@ -70,8 +71,8 @@ deps_fs/cifs/nterr.o := \
   include/linux/thread_info.h \
     $(wildcard include/config/compat.h) \
   include/linux/bitops.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/bitops.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/system.h \
+  /home/rms/EXP/arch/arm/include/asm/bitops.h \
+  /home/rms/EXP/arch/arm/include/asm/system.h \
     $(wildcard include/config/function/graph/tracer.h) \
     $(wildcard include/config/cpu/32v6k.h) \
     $(wildcard include/config/cpu/xsc3.h) \
@@ -85,12 +86,12 @@ deps_fs/cifs/nterr.o := \
     $(wildcard include/config/trace/irqflags.h) \
     $(wildcard include/config/irqsoff/tracer.h) \
     $(wildcard include/config/trace/irqflags/support.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/irqflags.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/ptrace.h \
+  /home/rms/EXP/arch/arm/include/asm/irqflags.h \
+  /home/rms/EXP/arch/arm/include/asm/ptrace.h \
     $(wildcard include/config/cpu/endian/be8.h) \
     $(wildcard include/config/arm/thumb.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/hwcap.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/outercache.h \
+  /home/rms/EXP/arch/arm/include/asm/hwcap.h \
+  /home/rms/EXP/arch/arm/include/asm/outercache.h \
     $(wildcard include/config/outer/cache/sync.h) \
     $(wildcard include/config/outer/cache.h) \
   include/asm-generic/cmpxchg-local.h \
@@ -102,17 +103,17 @@ deps_fs/cifs/nterr.o := \
   include/asm-generic/bitops/const_hweight.h \
   include/asm-generic/bitops/lock.h \
   include/asm-generic/bitops/le.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/byteorder.h \
+  /home/rms/EXP/arch/arm/include/asm/byteorder.h \
   include/linux/byteorder/little_endian.h \
   include/linux/swab.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/swab.h \
+  /home/rms/EXP/arch/arm/include/asm/swab.h \
   include/linux/byteorder/generic.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/thread_info.h \
+  /home/rms/EXP/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/fpstate.h \
+  /home/rms/EXP/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/iwmmxt.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/domain.h \
+  /home/rms/EXP/arch/arm/include/asm/domain.h \
     $(wildcard include/config/verify/permission/fault.h) \
     $(wildcard include/config/io/36.h) \
     $(wildcard include/config/cpu/use/domains.h) \
@@ -137,29 +138,29 @@ deps_fs/cifs/nterr.o := \
     $(wildcard include/config/modules.h) \
     $(wildcard include/config/hotplug.h) \
   include/linux/dynamic_debug.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/bug.h \
+  /home/rms/EXP/arch/arm/include/asm/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/thumb2/kernel.h) \
     $(wildcard include/config/debug/bugverbose.h) \
   include/asm-generic/bug.h \
     $(wildcard include/config/generic/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/div64.h \
+  /home/rms/EXP/arch/arm/include/asm/div64.h \
   include/linux/stringify.h \
   include/linux/bottom_half.h \
   include/linux/spinlock_types.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/spinlock_types.h \
+  /home/rms/EXP/arch/arm/include/asm/spinlock_types.h \
   include/linux/lockdep.h \
     $(wildcard include/config/lock/stat.h) \
     $(wildcard include/config/prove/rcu.h) \
   include/linux/rwlock_types.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/spinlock.h \
+  /home/rms/EXP/arch/arm/include/asm/spinlock.h \
     $(wildcard include/config/arm/ticket/locks.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/processor.h \
+  /home/rms/EXP/arch/arm/include/asm/processor.h \
     $(wildcard include/config/have/hw/breakpoint.h) \
     $(wildcard include/config/mmu.h) \
     $(wildcard include/config/arm/errata/754327.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/hw_breakpoint.h \
+  /home/rms/EXP/arch/arm/include/asm/hw_breakpoint.h \
   include/linux/rwlock.h \
   include/linux/spinlock_api_smp.h \
     $(wildcard include/config/inline/spin/lock.h) \
@@ -191,10 +192,10 @@ deps_fs/cifs/nterr.o := \
     $(wildcard include/config/inline/write/unlock/irq.h) \
     $(wildcard include/config/inline/read/unlock/irqrestore.h) \
     $(wildcard include/config/inline/write/unlock/irqrestore.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/atomic.h \
+  /home/rms/EXP/arch/arm/include/asm/atomic.h \
     $(wildcard include/config/generic/atomic64.h) \
   include/asm-generic/atomic-long.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/current.h \
+  /home/rms/EXP/arch/arm/include/asm/current.h \
   include/linux/kdev_t.h \
   include/linux/dcache.h \
   include/linux/rculist.h \
@@ -211,7 +212,7 @@ deps_fs/cifs/nterr.o := \
   include/linux/rcu_types.h \
   include/linux/cache.h \
     $(wildcard include/config/arch/has/cache/line/size.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/cache.h \
+  /home/rms/EXP/arch/arm/include/asm/cache.h \
     $(wildcard include/config/arm/l1/cache/shift.h) \
     $(wildcard include/config/aeabi.h) \
   include/linux/threads.h \
@@ -225,7 +226,7 @@ deps_fs/cifs/nterr.o := \
   include/linux/bitmap.h \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/string.h \
+  /home/rms/EXP/arch/arm/include/asm/string.h \
   include/linux/seqlock.h \
   include/linux/completion.h \
   include/linux/debugobjects.h \
@@ -237,7 +238,7 @@ deps_fs/cifs/nterr.o := \
   include/linux/bit_spinlock.h \
   include/linux/path.h \
   include/linux/stat.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/stat.h \
+  /home/rms/EXP/arch/arm/include/asm/stat.h \
   include/linux/time.h \
     $(wildcard include/config/arch/uses/gettimeoffset.h) \
     $(wildcard include/config/arch/msm8x60/lte.h) \
@@ -254,22 +255,22 @@ deps_fs/cifs/nterr.o := \
   include/linux/quota.h \
     $(wildcard include/config/quota/netlink/interface.h) \
   include/linux/errno.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/errno.h \
+  /home/rms/EXP/arch/arm/include/asm/errno.h \
   include/asm-generic/errno.h \
   include/asm-generic/errno-base.h \
   include/linux/rwsem.h \
     $(wildcard include/config/rwsem/generic/spinlock.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/rwsem.h \
+  /home/rms/EXP/arch/arm/include/asm/rwsem.h \
   include/linux/percpu_counter.h \
   include/linux/smp.h \
     $(wildcard include/config/use/generic/smp/helpers.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/smp.h \
+  /home/rms/EXP/arch/arm/include/asm/smp.h \
   include/linux/percpu.h \
     $(wildcard include/config/need/per/cpu/embed/first/chunk.h) \
     $(wildcard include/config/need/per/cpu/page/first/chunk.h) \
     $(wildcard include/config/have/setup/per/cpu/area.h) \
   include/linux/pfn.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/percpu.h \
+  /home/rms/EXP/arch/arm/include/asm/percpu.h \
   include/asm-generic/percpu.h \
   include/linux/percpu-defs.h \
     $(wildcard include/config/debug/force/weak/per/cpu.h) \
@@ -282,7 +283,7 @@ deps_fs/cifs/nterr.o := \
   include/linux/sunrpc/msg_prot.h \
   include/linux/inet.h \
   include/linux/fcntl.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/fcntl.h \
+  /home/rms/EXP/arch/arm/include/asm/fcntl.h \
   include/asm-generic/fcntl.h \
   include/linux/err.h \
   fs/cifs/nterr.h \

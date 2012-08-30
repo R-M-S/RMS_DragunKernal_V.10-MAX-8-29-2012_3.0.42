@@ -1,1 +1,1 @@
-cmd_fs/cifs/built-in.o :=  arm-eabi-ld -EL    -r -o fs/cifs/built-in.o fs/cifs/cifs.o 
+cmd_fs/cifs/built-in.o :=  rm -f fs/cifs/built-in.o; arm-eabi-ar rcs fs/cifs/built-in.o

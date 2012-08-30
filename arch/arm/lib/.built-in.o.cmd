@@ -1,1 +1,1 @@
-cmd_arch/arm/lib/built-in.o :=  rm -f arch/arm/lib/built-in.o; arm-eabi-ar rcs arch/arm/lib/built-in.o
+cmd_arch/arm/lib/built-in.o :=  arm-eabi-ld -EL    -r -o arch/arm/lib/built-in.o arch/arm/lib/uaccess_with_memcpy.o 

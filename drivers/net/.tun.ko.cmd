@@ -1,0 +1,1 @@
+cmd_drivers/net/tun.ko := arm-eabi-ld -EL -r  -T /home/rms/EXP/scripts/module-common.lds --build-id -T /home/rms/EXP/scripts/module-common.lds -o drivers/net/tun.ko drivers/net/tun.o drivers/net/tun.mod.o

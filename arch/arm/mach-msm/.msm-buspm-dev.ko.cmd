@@ -1,0 +1,1 @@
+cmd_arch/arm/mach-msm/msm-buspm-dev.ko := arm-eabi-ld -EL -r  -T /home/rms/EXP/scripts/module-common.lds --build-id -T /home/rms/EXP/scripts/module-common.lds -o arch/arm/mach-msm/msm-buspm-dev.ko arch/arm/mach-msm/msm-buspm-dev.o arch/arm/mach-msm/msm-buspm-dev.mod.o

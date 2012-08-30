@@ -22,6 +22,11 @@ deps_lib/gen_crc32table := \
   /usr/include/x86_64-linux-gnu/bits/stdio.h \
   /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   lib/crc32defs.h \
+    $(wildcard include/config/crc32/sliceby8.h) \
+    $(wildcard include/config/crc32/sliceby4.h) \
+    $(wildcard include/config/crc32/sarwate.h) \
+    $(wildcard include/config/crc32/bit.h) \
+    $(wildcard include/config/64bit.h) \
   /usr/include/inttypes.h \
   /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h \
   /usr/include/stdint.h \

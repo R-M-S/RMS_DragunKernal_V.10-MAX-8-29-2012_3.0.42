@@ -1,4 +1,4 @@
-cmd_arch/arm/kernel/vmlinux.lds := /home/rms/android/kernel/tam/scripts/gcc-wrapper.py arm-eabi-gcc -E -Wp,-MD,arch/arm/kernel/.vmlinux.lds.d  -nostdinc -isystem /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/home/rms/android/kernel/tam/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include   -DTEXT_OFFSET=0x00008000 -P -C -Uarm -D__ASSEMBLY__ -DLINKER_SCRIPT -o arch/arm/kernel/vmlinux.lds arch/arm/kernel/vmlinux.lds.S
+cmd_arch/arm/kernel/vmlinux.lds := /home/rms/EXP/scripts/gcc-wrapper.py arm-eabi-gcc -E -Wp,-MD,arch/arm/kernel/.vmlinux.lds.d  -nostdinc -isystem /home/rms/android/system/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/home/rms/EXP/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include   -DTEXT_OFFSET=0x00008000 -P -C -Uarm -D__ASSEMBLY__ -DLINKER_SCRIPT -o arch/arm/kernel/vmlinux.lds arch/arm/kernel/vmlinux.lds.S
 
 source_arch/arm/kernel/vmlinux.lds := arch/arm/kernel/vmlinux.lds.S
 
@@ -26,17 +26,17 @@ deps_arch/arm/kernel/vmlinux.lds := \
     $(wildcard include/config/constructors.h) \
     $(wildcard include/config/pm/trace.h) \
     $(wildcard include/config/blk/dev/initrd.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/thread_info.h \
+  /home/rms/EXP/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
   include/linux/compiler.h \
     $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/enable/must/check.h) \
     $(wildcard include/config/enable/warn/deprecated.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/fpstate.h \
+  /home/rms/EXP/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/smp.h) \
     $(wildcard include/config/iwmmxt.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/memory.h \
+  /home/rms/EXP/arch/arm/include/asm/memory.h \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/thumb2/kernel.h) \
     $(wildcard include/config/highmem.h) \
@@ -51,9 +51,9 @@ deps_arch/arm/kernel/vmlinux.lds := \
     $(wildcard include/config/arch/dma/addr/t/64bit.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
     $(wildcard include/config/64bit.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/types.h \
+  /home/rms/EXP/arch/arm/include/asm/types.h \
   include/asm-generic/int-ll64.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/bitsperlong.h \
+  /home/rms/EXP/arch/arm/include/asm/bitsperlong.h \
   include/asm-generic/bitsperlong.h \
   arch/arm/mach-msm/include/mach/memory.h \
     $(wildcard include/config/phys/offset.h) \
@@ -69,13 +69,13 @@ deps_arch/arm/kernel/vmlinux.lds := \
     $(wildcard include/config/arch/msm/scorpion.h) \
     $(wildcard include/config/arch/msm/krait.h) \
     $(wildcard include/config/arch/msm7x27.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/sizes.h \
+  /home/rms/EXP/arch/arm/include/asm/sizes.h \
   include/asm-generic/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/flatmem.h) \
     $(wildcard include/config/discontigmem.h) \
     $(wildcard include/config/sparsemem/vmemmap.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/page.h \
+  /home/rms/EXP/arch/arm/include/asm/page.h \
     $(wildcard include/config/cpu/copy/v3.h) \
     $(wildcard include/config/cpu/copy/v4wt.h) \
     $(wildcard include/config/cpu/copy/v4wb.h) \
@@ -88,12 +88,12 @@ deps_arch/arm/kernel/vmlinux.lds := \
     $(wildcard include/config/have/arch/pfn/valid.h) \
     $(wildcard include/config/memory/hotplug/sparse.h) \
   include/asm-generic/getorder.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/pgtable.h \
+  /home/rms/EXP/arch/arm/include/asm/pgtable.h \
     $(wildcard include/config/arm/dma/mem/bufferable.h) \
     $(wildcard include/config/highpte.h) \
   include/asm-generic/4level-fixup.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/proc-fns.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/glue-proc.h \
+  /home/rms/EXP/arch/arm/include/asm/proc-fns.h \
+  /home/rms/EXP/arch/arm/include/asm/glue-proc.h \
     $(wildcard include/config/cpu/arm610.h) \
     $(wildcard include/config/cpu/arm7tdmi.h) \
     $(wildcard include/config/cpu/arm710.h) \
@@ -117,12 +117,12 @@ deps_arch/arm/kernel/vmlinux.lds := \
     $(wildcard include/config/cpu/v6.h) \
     $(wildcard include/config/cpu/v6k.h) \
     $(wildcard include/config/cpu/v7.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/glue.h \
+  /home/rms/EXP/arch/arm/include/asm/glue.h \
   arch/arm/mach-msm/include/mach/vmalloc.h \
     $(wildcard include/config/vmsplit/2g.h) \
     $(wildcard include/config/debug/ll.h) \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/pgtable-hwdef.h \
-  /home/rms/android/kernel/tam/arch/arm/include/asm/tlbflush.h \
+  /home/rms/EXP/arch/arm/include/asm/pgtable-hwdef.h \
+  /home/rms/EXP/arch/arm/include/asm/tlbflush.h \
     $(wildcard include/config/cpu/tlb/v3.h) \
     $(wildcard include/config/cpu/tlb/v4wt.h) \
     $(wildcard include/config/cpu/tlb/fa.h) \

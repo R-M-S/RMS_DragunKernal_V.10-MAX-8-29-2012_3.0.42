@@ -1,1 +1,1 @@
-cmd_drivers/leds/built-in.o :=  arm-eabi-ld -EL    -r -o drivers/leds/built-in.o drivers/leds/led-core.o drivers/leds/led-class.o drivers/leds/leds-gpio.o drivers/leds/leds-pm8058.o drivers/leds/flashlight_aat1271.o 
+cmd_drivers/leds/built-in.o :=  arm-eabi-ld -EL    -r -o drivers/leds/built-in.o drivers/leds/led-core.o drivers/leds/led-class.o drivers/leds/leds-gpio.o drivers/leds/leds-pm8058.o drivers/leds/leds-pm8058-multiplier.o drivers/leds/flashlight_aat1271.o 

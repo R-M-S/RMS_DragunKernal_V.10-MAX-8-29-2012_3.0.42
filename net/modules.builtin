@@ -2,7 +2,6 @@ kernel/net/bluetooth/bluetooth.ko
 kernel/net/bluetooth/bnep/bnep.ko
 kernel/net/bluetooth/hidp/hidp.ko
 kernel/net/bluetooth/rfcomm/rfcomm.ko
-kernel/net/dns_resolver/dns_resolver.ko
 kernel/net/ipv4/ah4.ko
 kernel/net/ipv4/esp4.ko
 kernel/net/ipv4/tunnel4.ko
@@ -94,7 +93,6 @@ kernel/net/netfilter/xt_connmark.ko
 kernel/net/netfilter/xt_CLASSIFY.ko
 kernel/net/netfilter/xt_HL.ko
 kernel/net/netfilter/xt_NFQUEUE.ko
-kernel/net/netfilter/xt_TCPMSS.ko
 kernel/net/netfilter/xt_comment.ko
 kernel/net/netfilter/xt_connlimit.ko
 kernel/net/netfilter/xt_conntrack.ko
@@ -114,7 +112,6 @@ kernel/net/netfilter/xt_socket.ko
 kernel/net/netfilter/xt_state.ko
 kernel/net/netfilter/xt_statistic.ko
 kernel/net/netfilter/xt_string.ko
-kernel/net/netfilter/xt_tcpmss.ko
 kernel/net/netfilter/xt_time.ko
 kernel/net/netfilter/xt_u32.ko
 kernel/net/packet/af_packet.ko
@@ -124,8 +121,6 @@ kernel/net/sched/sch_htb.ko
 kernel/net/sched/sch_ingress.ko
 kernel/net/sched/cls_u32.ko
 kernel/net/sched/em_u32.ko
-kernel/net/sunrpc/sunrpc.ko
-kernel/net/sunrpc/auth_gss/auth_rpcgss.ko
 kernel/net/unix/unix.ko
 kernel/net/wireless/cfg80211.ko
 kernel/net/wireless/lib80211.ko

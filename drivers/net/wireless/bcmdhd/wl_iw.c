@@ -1978,7 +1978,7 @@ static int iwpriv_get_assoc_list(struct net_device *dev,
 
 	memset(sta_maclist, 0, sizeof(mac_buf));
 
-	sta_maclist->count = 8;
+	sta_maclist->count = sizeof(&sta_maclist->ea) / sizeof(&sta_maclist->ea[0]);
 
 	WL_SOFTAP(("%s: net device:%s, buf_sz:%d\n",
 		__FUNCTION__, dev->name, sizeof(mac_buf)));
@@ -1998,7 +1998,7 @@ static int iwpriv_get_assoc_list(struct net_device *dev,
 	p_mac_str = mac_lst;
 	p_mac_str_end = &mac_lst[sizeof(mac_lst)-1];
 
-	for (i = 0; i < 8; i++) { 
+	for (i = 0; i < sta_maclist->count; i++) {
 		struct ether_addr * id = &sta_maclist->ea[i];
 		if (!ETHER_ISNULLADDR(id->octet)) {
 			scb_val_t scb_val;
